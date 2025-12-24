@@ -1,325 +1,349 @@
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-// const LoadingScreen = () => {
-//     const [progress, setProgress] = useState(0);
-//     const [loadingText, setLoadingText] = useState('Initializing');
+const LoadingScreen = () => {
+    const [progress, setProgress] = useState(0);
+    const [loadingText, setLoadingText] = useState('Initializing');
 
-//     useEffect(() => {
-//         // Progress simulation
-//         const interval = setInterval(() => {
-//             setProgress(prev => {
-//                 const newProgress = prev + Math.random() * 12;
-//                 if (newProgress >= 100) {
-//                     clearInterval(interval);
-//                     setLoadingText('Ready!');
-//                     return 100;
-//                 }
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setProgress(prev => {
+                const newProgress = prev + Math.random() * 12;
+                if (newProgress >= 100) {
+                    clearInterval(interval);
+                    setLoadingText('Ready!');
+                    return 100;
+                }
 
-//                 // Update loading text based on progress
-//                 if (newProgress < 30) setLoadingText('Initializing');
-//                 else if (newProgress < 60) setLoadingText('Loading Assets');
-//                 else if (newProgress < 90) setLoadingText('Almost There');
-//                 else setLoadingText('Finalizing');
+                if (newProgress < 30) setLoadingText('Initializing');
+                else if (newProgress < 60) setLoadingText('Loading Assets');
+                else if (newProgress < 90) setLoadingText('Almost There');
+                else setLoadingText('Finalizing');
 
-//                 return newProgress;
-//             });
-//         }, 200);
+                return newProgress;
+            });
+        }, 200);
 
-//         return () => clearInterval(interval);
-//     }, []);
+        return () => clearInterval(interval);
+    }, []);
 
-//     return (
-//         <div className="w-screen h-screen flex justify-center items-center relative overflow-hidden bg-white">
-//             {/* Subtle animated background circles */}
-//             <div className="absolute inset-0 overflow-hidden">
-//                 <div className="absolute top-10 left-10 w-96 h-96 bg-blue-50 rounded-full filter blur-3xl opacity-40 animate-float-slow"></div>
-//                 <div className="absolute bottom-20 right-20 w-80 h-80 bg-yellow-50 rounded-full filter blur-3xl opacity-40 animate-float-slow animation-delay-2000"></div>
-//                 <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-blue-100 rounded-full filter blur-3xl opacity-30 animate-float-slow animation-delay-4000"></div>
-//             </div>
+    return (
+        <div className="w-screen h-screen flex justify-center items-center relative overflow-hidden bg-white px-3 sm:px-4">
+            {/* Subtle animated background circles */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-10 left-5 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-blue-50 rounded-full filter blur-2xl sm:blur-3xl opacity-40 animate-float-slow"></div>
+                <div className="absolute bottom-20 right-5 w-28 h-28 sm:w-40 sm:h-40 md:w-56 md:h-56 bg-yellow-50 rounded-full filter blur-2xl sm:blur-3xl opacity-40 animate-float-slow animation-delay-2000"></div>
+            </div>
 
-//             {/* Floating geometric shapes */}
-//             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-//                 {/* Blue squares */}
-//                 <div className="absolute top-20 left-1/4 w-8 h-8 border-4 border-blue-200 rounded-lg animate-float-geometric" style={{ animationDelay: '0s' }}></div>
-//                 <div className="absolute bottom-32 right-1/3 w-6 h-6 border-4 border-blue-300 rounded-lg animate-float-geometric" style={{ animationDelay: '1s' }}></div>
+            {/* Main content */}
+            <div className="relative z-10 flex flex-col items-center space-y-6 sm:space-y-8 md:space-y-10 w-full max-w-3xl mx-auto">
+                {/* Logo container */}
+                <div className="relative w-full max-w-md mx-auto">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 border-3 sm:border-4 border-blue-100 rounded-full animate-spin-slow"></div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 border-3 sm:border-4 border-yellow-100 rounded-full animate-spin-slow-reverse"></div>
+                    </div>
+                    <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 flex items-center justify-center mx-auto">
+                        <div className="bg-white rounded-full p-3 sm:p-4 md:p-6 shadow-lg border-3 sm:border-4 border-gray-100 transform hover:scale-105 transition-transform duration-300 animate-float w-full h-full">
+                            <div className="flex items-center justify-center space-x-1 w-full h-full">
+                                <div className="relative">
+                                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                                        hous
+                                    </span>
+                                    <div className="absolute top-0.5 left-7 sm:top-1 sm:left-8 md:top-1.5 md:left-10 text-white text-xs">
+                                        🏠
+                                    </div>
+                                </div>
+                                <div className="bg-yellow-400 px-1.5 py-1 sm:px-2 sm:py-1.5 md:px-2.5 md:py-2 rounded-lg">
+                                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                                        ly
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="text-center mt-1 sm:mt-2 absolute bottom-1 sm:bottom-2 left-0 right-0">
+                                <p className="text-gray-400 text-xs tracking-[0.1em] sm:tracking-[0.2em] md:tracking-[0.25em] font-medium uppercase px-2">
+                                    HOUSLY FINNTECH REALTY
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        {[0, 90, 180, 270].map((_, i) => (
+                            <div
+                                key={i}
+                                className={`absolute w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 ${i % 2 === 0 ? 'bg-blue-500' : 'bg-yellow-400'} rounded-full shadow`}
+                                style={{
+                                    animation: `orbit 4s linear infinite`,
+                                    animationDelay: `${i * 1}s`,
+                                    transformOrigin: 'center center'
+                                }}
+                            />
+                        ))}
+                    </div>
+                </div>
 
-//                 {/* Yellow rounded squares */}
-//                 <div className="absolute top-1/3 right-20 w-10 h-10 bg-yellow-400 rounded-xl opacity-20 animate-float-geometric" style={{ animationDelay: '0.5s' }}></div>
-//                 <div className="absolute bottom-1/4 left-20 w-8 h-8 bg-yellow-300 rounded-xl opacity-20 animate-float-geometric" style={{ animationDelay: '1.5s' }}></div>
+                {/* Services Cards with Hover Effects */}
+                <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 md:gap-5 w-full max-w-2xl mx-auto px-2">
+                    {/* Real Estate Card with Hover Effects */}
+                    <a
+                        href="https://resaleexpert.in/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative"
+                    >
+                        <div className="bg-white rounded-xl shadow-sm transition-all duration-500 transform hover:-translate-y-2 p-4 border border-gray-200 hover:border-blue-500 cursor-pointer w-32 sm:w-36 md:w-40 relative overflow-hidden">
+                            {/* Hover background effect */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-//                 {/* House icons scattered */}
-//                 <div className="absolute top-40 right-1/4 text-blue-200 text-2xl opacity-30 animate-float-geometric" style={{ animationDelay: '0.3s' }}>🏠</div>
-//                 <div className="absolute bottom-40 left-1/4 text-blue-200 text-xl opacity-30 animate-float-geometric" style={{ animationDelay: '1.2s' }}>🏠</div>
-//             </div>
+                            {/* Animated border on hover */}
+                            <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-blue-300 transition-all duration-500"></div>
 
-//             {/* Main content */}
-//             <div className="relative z-10 flex flex-col items-center space-y-10">
-//                 {/* Logo container with animated rings */}
-//                 <div className="relative">
-//                     {/* Outer rotating ring - Blue */}
-//                     <div className="absolute inset-0 flex items-center justify-center">
-//                         <div className="w-80 h-80 border-4 border-blue-100 rounded-full animate-spin-slow"></div>
-//                     </div>
+                            {/* Floating animation on hover */}
+                            <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-100 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-ping"></div>
 
-//                     {/* Middle ring - Yellow */}
-//                     <div className="absolute inset-0 flex items-center justify-center">
-//                         <div className="w-72 h-72 border-4 border-yellow-100 rounded-full animate-spin-slow-reverse"></div>
-//                     </div>
+                            <div className="relative z-10 flex flex-col items-center space-y-3">
+                                {/* Icon with glow effect */}
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:shadow-blue-200 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
+                                    <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                    </svg>
+                                </div>
 
-//                     {/* Logo display */}
-//                     <div className="relative w-80 h-80 flex items-center justify-center">
-//                         <div className="bg-white rounded-full p-12 shadow-2xl border-4 border-gray-100 transform hover:scale-105 transition-transform duration-300 animate-float">
-//                             {/* Hously text logo recreation */}
-//                             <div className="flex items-center space-x-1">
-//                                 {/* "hous" in blue */}
-//                                 <div className="relative">
-//                                     <span className="text-6xl font-bold text-blue-600" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-//                                         hous
-//                                     </span>
-//                                     {/* House icon in the 'o' */}
-//                                     <div className="absolute top-3 left-16 text-white text-xs">
-//                                         🏠
-//                                     </div>
-//                                 </div>
+                                {/* Text with color change */}
+                                <div className="text-center">
+                                    <h3 className="text-gray-800 font-bold text-sm sm:text-base group-hover:text-blue-600 transition-colors duration-300 transform group-hover:scale-105">
+                                        Real Estate
+                                    </h3>
+                                    <p className="text-gray-500 text-xs mt-1 group-hover:text-blue-400 transition-colors duration-300">
+                                        Property Solutions
+                                    </p>
+                                </div>
 
-//                                 {/* "ly" in yellow box */}
-//                                 <div className="bg-yellow-400 px-3 py-2 rounded-xl">
-//                                     <span className="text-6xl font-bold text-blue-600" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-//                                         ly
-//                                     </span>
-//                                 </div>
-//                             </div>
+                                {/* Loading indicator on hover */}
+                                <div className="w-16 h-1 bg-gray-100 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div
+                                        className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-300"
+                                        style={{ width: `${progress}%` }}
+                                    ></div>
+                                </div>
+                            </div>
 
-//                             {/* Subtitle */}
-//                             <div className="text-center mt-4">
-//                                 <p className="text-gray-400 text-xs tracking-[0.3em] font-medium uppercase">
-//                                     HOUSLY FINNTECH REALTY
-//                                 </p>
-//                             </div>
-//                         </div>
-//                     </div>
+                            {/* Tooltip on hover */}
+                            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-y-1 whitespace-nowrap">
+                                Loading: {Math.round(progress)}%
+                            </div>
+                        </div>
+                    </a>
 
-//                     {/* Orbiting dots - Blue and Yellow */}
-//                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-//                         {[0, 90, 180, 270].map((_, i) => (
-//                             <div
-//                                 key={i}
-//                                 className={`absolute w-4 h-4 ${i % 2 === 0 ? 'bg-blue-500' : 'bg-yellow-400'} rounded-full shadow-lg`}
-//                                 style={{
-//                                     animation: `orbit 4s linear infinite`,
-//                                     animationDelay: `${i * 1}s`
-//                                 }}
-//                             />
-//                         ))}
-//                     </div>
-//                 </div>
+                    {/* Finance Card with Hover Effects */}
+                    <a
+                        href="https://hously.in/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative"
+                    >
+                        <div className="bg-white rounded-xl shadow-sm transition-all duration-500 transform hover:-translate-y-2 p-4 border border-gray-200 hover:border-yellow-400 cursor-pointer w-32 sm:w-36 md:w-40 relative overflow-hidden">
+                            {/* Hover background effect */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-//                 {/* Services section - Clickable Cards */}
-//                 <div className="flex items-center space-x-4 flex-wrap justify-center max-w-4xl">
-//                     {/* Real Estate Card */}
-//                     <a
-//                         href="https://resaleexpert.in/"
-//                         target="_blank"
-//                         rel="noopener noreferrer"
-//                         className="group"
-//                     >
-//                         <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-6 border-2 border-transparent hover:border-blue-500 cursor-pointer min-w-[200px]">
-//                             <div className="flex flex-col items-center space-y-3">
-//                                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-//                                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-//                                     </svg>
-//                                 </div>
-//                                 <div className="text-center">
-//                                     <h3 className="text-gray-800 font-bold text-lg group-hover:text-blue-600 transition-colors">Real Estate</h3>
-//                                     <p className="text-gray-500 text-xs mt-1">Property Solutions</p>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </a>
+                            {/* Animated border on hover */}
+                            <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-yellow-300 transition-all duration-500"></div>
 
-//                     {/* Finance Card */}
-//                     <a
-//                         href="https://hously.in/"
-//                         target="_blank"
-//                         rel="noopener noreferrer"
-//                         className="group"
-//                     >
-//                         <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-6 border-2 border-transparent hover:border-yellow-400 cursor-pointer min-w-[200px]">
-//                             <div className="flex flex-col items-center space-y-3">
-//                                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-//                                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-//                                     </svg>
-//                                 </div>
-//                                 <div className="text-center">
-//                                     <h3 className="text-gray-800 font-bold text-lg group-hover:text-yellow-600 transition-colors">Finance</h3>
-//                                     <p className="text-gray-500 text-xs mt-1">Financial Services</p>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </a>
+                            {/* Floating animation on hover */}
+                            <div className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-100 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-ping"></div>
 
-//                     {/* IT Services Card */}
-//                     <a
-//                         href="https://hously.in/"
-//                         target="_blank"
-//                         rel="noopener noreferrer"
-//                         className="group"
-//                     >
-//                         <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-6 border-2 border-transparent hover:border-blue-600 cursor-pointer min-w-[200px]">
-//                             <div className="flex flex-col items-center space-y-3">
-//                                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-//                                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-//                                     </svg>
-//                                 </div>
-//                                 <div className="text-center">
-//                                     <h3 className="text-gray-800 font-bold text-lg group-hover:text-blue-600 transition-colors">IT Services</h3>
-//                                     <p className="text-gray-500 text-xs mt-1">Tech Solutions</p>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </a>
-//                 </div>
+                            <div className="relative z-10 flex flex-col items-center space-y-3">
+                                {/* Icon with glow effect */}
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-500 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:shadow-yellow-200 transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6">
+                                    <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
 
-//                 {/* Progress bar - Blue and Yellow themed */}
-//                 <div className="w-96 space-y-3">
-//                     <div className="flex justify-between items-center">
-//                         <span className="text-blue-600 text-sm font-semibold tracking-wide">{loadingText}</span>
-//                         <span className="text-yellow-600 text-sm font-bold">{Math.min(100, Math.floor(progress))}%</span>
-//                     </div>
+                                {/* Text with color change */}
+                                <div className="text-center">
+                                    <h3 className="text-gray-800 font-bold text-sm sm:text-base group-hover:text-yellow-600 transition-colors duration-300 transform group-hover:scale-105">
+                                        Finance
+                                    </h3>
+                                    <p className="text-gray-500 text-xs mt-1 group-hover:text-yellow-500 transition-colors duration-300">
+                                        Financial Services
+                                    </p>
+                                </div>
 
-//                     {/* Progress bar container */}
-//                     <div className="relative h-3 bg-gray-100 rounded-full overflow-hidden shadow-inner border border-gray-200">
-//                         {/* Progress fill with gradient */}
-//                         <div
-//                             className="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-500 via-blue-600 to-yellow-400 rounded-full transition-all duration-300 ease-out"
-//                             style={{ width: `${Math.min(100, progress)}%` }}
-//                         >
-//                             {/* Animated shine effect */}
-//                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-shine"></div>
-//                         </div>
+                                {/* Loading indicator on hover */}
+                                <div className="w-16 h-1 bg-gray-100 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div
+                                        className="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full transition-all duration-300"
+                                        style={{ width: `${progress}%` }}
+                                    ></div>
+                                </div>
+                            </div>
 
-//                         {/* Glowing dot at progress end */}
-//                         <div
-//                             className="absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white border-2 border-yellow-400 rounded-full shadow-lg transition-all duration-300"
-//                             style={{ left: `calc(${Math.min(100, progress)}% - 8px)` }}
-//                         ></div>
-//                     </div>
+                            {/* Tooltip on hover */}
+                            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-y-1 whitespace-nowrap">
+                                {loadingText}
+                            </div>
+                        </div>
+                    </a>
 
-//                     {/* Progress milestones */}
-//                     <div className="flex justify-between px-1">
-//                         {[25, 50, 75, 100].map(segment => (
-//                             <div
-//                                 key={segment}
-//                                 className={`flex flex-col items-center space-y-1 transition-all duration-300`}
-//                             >
-//                                 <div className={`h-1.5 w-1.5 rounded-full ${progress >= segment
-//                                     ? segment === 100 ? 'bg-yellow-400 shadow-md' : 'bg-blue-500 shadow-md'
-//                                     : 'bg-gray-300'
-//                                     }`}></div>
-//                                 <span className={`text-xs font-medium ${progress >= segment ? 'text-blue-600' : 'text-gray-400'
-//                                     }`}>
-//                                     {segment}%
-//                                 </span>
-//                             </div>
-//                         ))}
-//                     </div>
-//                 </div>
+                    {/* IT Services Card with Hover Effects */}
+                    <a
+                        href="https://hously.in/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative"
+                    >
+                        <div className="bg-white rounded-xl shadow-sm transition-all duration-500 transform hover:-translate-y-2 p-4 border border-gray-200 hover:border-blue-600 cursor-pointer w-32 sm:w-36 md:w-40 relative overflow-hidden">
+                            {/* Hover background effect */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-//                 {/* Loading dots */}
-//                 <div className="flex items-center space-x-2">
-//                     <div className="flex space-x-1.5">
-//                         {[...Array(3)].map((_, i) => (
-//                             <div
-//                                 key={i}
-//                                 className={`w-2.5 h-2.5 rounded-full animate-bounce ${i === 0 ? 'bg-blue-500' : i === 1 ? 'bg-blue-600' : 'bg-yellow-400'
-//                                     }`}
-//                                 style={{ animationDelay: `${i * 0.15}s` }}
-//                             ></div>
-//                         ))}
-//                     </div>
-//                     <p className="text-gray-500 text-sm font-medium">
-//                         Loading your experience...
-//                     </p>
-//                 </div>
-//             </div>
+                            {/* Animated border on hover */}
+                            <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-blue-400 transition-all duration-500"></div>
 
-//             <style>{`
-//                 @keyframes float-slow {
-//                     0%, 100% { transform: translate(0, 0); }
-//                     50% { transform: translate(-20px, -30px); }
-//                 }
+                            {/* Floating animation on hover */}
+                            <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-100 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-ping"></div>
+
+                            <div className="relative z-10 flex flex-col items-center space-y-3">
+                                {/* Icon with glow effect */}
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:shadow-blue-200 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                                    <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+
+                                {/* Text with color change */}
+                                <div className="text-center">
+                                    <h3 className="text-gray-800 font-bold text-sm sm:text-base group-hover:text-blue-600 transition-colors duration-300 transform group-hover:scale-105">
+                                        IT Services
+                                    </h3>
+                                    <p className="text-gray-500 text-xs mt-1 group-hover:text-blue-400 transition-colors duration-300">
+                                        Tech Solutions
+                                    </p>
+                                </div>
+
+                                {/* Loading indicator on hover */}
+                                <div className="w-16 h-1 bg-gray-100 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div
+                                        className="h-full bg-gradient-to-r from-blue-600 to-blue-700 rounded-full transition-all duration-300"
+                                        style={{ width: `${progress}%` }}
+                                    ></div>
+                                </div>
+                            </div>
+
+                            {/* Tooltip on hover */}
+                            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-y-1 whitespace-nowrap">
+                                Status: {Math.round(progress)}%
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                {/* Loading status text */}
+                <div className="text-center space-y-2">
+                    <div className="flex items-center justify-center space-x-2">
+                        <div className="flex space-x-1">
+                            {[...Array(3)].map((_, i) => (
+                                <div
+                                    key={i}
+                                    className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full animate-bounce ${i === 0 ? 'bg-blue-500' : i === 1 ? 'bg-blue-600' : 'bg-yellow-400'
+                                        }`}
+                                    style={{ animationDelay: `${i * 0.15}s` }}
+                                ></div>
+                            ))}
+                        </div>
+                        <p className="text-gray-600 text-sm sm:text-base font-medium">
+                            {loadingText}... {Math.round(progress)}%
+                        </p>
+                    </div>
+                    <p className="text-gray-400 text-xs sm:text-sm">
+                        Click on any service to explore
+                    </p>
+                </div>
+            </div>
+
+            <style>{`
+                @keyframes float-slow {
+                    0%, 100% { transform: translate(0, 0); }
+                    50% { transform: translate(-10px, -15px); }
+                }
                 
-//                 @keyframes float {
-//                     0%, 100% { transform: translateY(0px); }
-//                     50% { transform: translateY(-12px); }
-//                 }
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px); }
+                    50% { transform: translateY(-6px); }
+                }
                 
-//                 @keyframes float-geometric {
-//                     0%, 100% { transform: translateY(0px) rotate(0deg); }
-//                     50% { transform: translateY(-25px) rotate(5deg); }
-//                 }
+                @keyframes spin-slow {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
                 
-//                 @keyframes spin-slow {
-//                     from { transform: rotate(0deg); }
-//                     to { transform: rotate(360deg); }
-//                 }
+                @keyframes spin-slow-reverse {
+                    from { transform: rotate(360deg); }
+                    to { transform: rotate(0deg); }
+                }
                 
-//                 @keyframes spin-slow-reverse {
-//                     from { transform: rotate(360deg); }
-//                     to { transform: rotate(0deg); }
-//                 }
+                @keyframes orbit {
+                    from {
+                        transform: translate(-50%, -50%) rotate(0deg) translateX(60px) rotate(0deg);
+                    }
+                    to {
+                        transform: translate(-50%, -50%) rotate(360deg) translateX(60px) rotate(-360deg);
+                    }
+                }
                 
-//                 @keyframes shine {
-//                     0% { transform: translateX(-100%); }
-//                     100% { transform: translateX(200%); }
-//                 }
+                @media (min-width: 640px) {
+                    @keyframes orbit {
+                        from {
+                            transform: translate(-50%, -50%) rotate(0deg) translateX(75px) rotate(0deg);
+                        }
+                        to {
+                            transform: translate(-50%, -50%) rotate(360deg) translateX(75px) rotate(-360deg);
+                        }
+                    }
+                }
                 
-//                 @keyframes orbit {
-//                     from {
-//                         transform: translate(-50%, -50%) rotate(0deg) translateX(160px) rotate(0deg);
-//                     }
-//                     to {
-//                         transform: translate(-50%, -50%) rotate(360deg) translateX(160px) rotate(-360deg);
-//                     }
-//                 }
+                @media (min-width: 768px) {
+                    @keyframes orbit {
+                        from {
+                            transform: translate(-50%, -50%) rotate(0deg) translateX(90px) rotate(0deg);
+                        }
+                        to {
+                            transform: translate(-50%, -50%) rotate(360deg) translateX(90px) rotate(-360deg);
+                        }
+                    }
+                }
                 
-//                 .animate-float-slow {
-//                     animation: float-slow 8s ease-in-out infinite;
-//                 }
+                .animate-float-slow {
+                    animation: float-slow 8s ease-in-out infinite;
+                }
                 
-//                 .animate-float {
-//                     animation: float 3s ease-in-out infinite;
-//                 }
+                .animate-float {
+                    animation: float 3s ease-in-out infinite;
+                }
                 
-//                 .animate-float-geometric {
-//                     animation: float-geometric 4s ease-in-out infinite;
-//                 }
+                .animate-spin-slow {
+                    animation: spin-slow 8s linear infinite;
+                }
                 
-//                 .animate-spin-slow {
-//                     animation: spin-slow 8s linear infinite;
-//                 }
+                .animate-spin-slow-reverse {
+                    animation: spin-slow-reverse 6s linear infinite;
+                }
                 
-//                 .animate-spin-slow-reverse {
-//                     animation: spin-slow-reverse 6s linear infinite;
-//                 }
+                .animation-delay-2000 {
+                    animation-delay: 2s;
+                }
                 
-//                 .animate-shine {
-//                     animation: shine 2s ease-in-out infinite;
-//                 }
-                
-//                 .animation-delay-2000 {
-//                     animation-delay: 2s;
-//                 }
-                
-//                 .animation-delay-4000 {
-//                     animation-delay: 4s;
-//                 }
-//             `}</style>
-//         </div>
-//     );
-// };
+                @keyframes bounce {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-4px); }
+                }
+                .animate-bounce {
+                    animation: bounce 0.6s infinite;
+                }
+            `}</style>
+        </div>
+    );
+};
 
-// export default LoadingScreen;
+export default LoadingScreen;

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
-// import LoadingScreen from './components/LoadingScreen';
+import LoadingScreen from './components/LoadingScreen';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -22,7 +22,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 0);
+    const timer = setTimeout(() => setLoading(false), 10000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -30,7 +30,7 @@ function App() {
     <Router>
       {loading ? (
         <div className="w-screen h-screen flex justify-center items-center">
-          {/* <LoadingScreen /> */}
+          <LoadingScreen />
         </div>
       ) : (
         <div className="relative min-h-screen flex flex-col">
